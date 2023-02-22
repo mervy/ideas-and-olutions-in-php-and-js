@@ -1,0 +1,55 @@
+<style>
+.fields {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 1%;
+}
+img {
+	width: 200px;
+	margin-right: 15px;
+}
+</style>
+
+<div class="fields">
+	<label for="image-upload">Selecione uma imagem:</label>
+	<input type="file" id="image-upload" accept="image/*">
+	<div id="image-preview"></div>
+</div>
+<div class="fields">
+	<label for="multi-image-upload">Selecione várias imagens:</label>
+	<input type="file" id="multi-image-upload" accept="image/*" multiple>
+	<div id="multi-image-preview"></div>
+</div>
+
+<script>
+const imageInput = document.getElementById('image-upload');
+const imagePreview = document.getElementById('image-preview');
+
+const multiImageInput = document.getElementById('multi-image-upload');
+const multiImagePreview = document.getElementById('multi-image-preview');
+
+function handleImageUpload(input, preview) {
+  input.addEventListener('change', () => {
+    const files = input.files;
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const reader = new FileReader();
+
+      reader.addEventListener('load', () => {
+        const img = document.createElement('img');
+        img.setAttribute('src', reader.result);
+        preview.appendChild(img);
+      });
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    }
+  });
+}
+
+handleImageUpload(imageInput, imagePreview);
+handleImageUpload(multiImageInput, multiImagePreview);
+
+</script>
