@@ -1,2 +1,2 @@
-# ideas-and-olutions-in-php-and-js
+# ideas-and-solutions-in-php-and-js
 Ideas and solutions in PHP and Javascript
