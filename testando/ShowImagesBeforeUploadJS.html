@@ -1,0 +1,77 @@
+<style>
+  input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px
+  }
+
+  img {
+    width: 200px;
+    height: 120px;
+  }
+</style>
+
+  <!-- Campo de upload simples -->
+  <label for="file">Upload Simples</label>
+  <input type="file" id="uploadSingle" accept="image/*"><br>
+  <!-- Área para exibir as imagens -->
+  <div id="showSingle"></div>
+
+  <!-- Campo de upload múltiplo -->
+  <label for="file">Upload múltiplo</label>
+  <input type="file" id="uploadMultiple" accept="image/*" multiple>
+  <!-- Área para exibir as imagens -->
+  <div id="showMultiple"></div>
+
+
+<script>
+  // Selecionando elementos HTML
+  const uploadSingle = document.getElementById('uploadSingle');
+  const uploadMultiple = document.getElementById('uploadMultiple');
+  const showSingle = document.getElementById('showSingle');
+  const showMultiple = document.getElementById('showMultiple');
+
+  // Adicionando evento de mudança aos campos de upload
+  uploadSingle.addEventListener('change', exibirImagens);
+  uploadMultiple.addEventListener('change', exibirImagens);
+
+  // Função para exibir imagens
+  function exibirImagens() {
+    showSingle.innerHTML = ''; // Limpar a área de exibição
+    showMultiple.innerHTML = ''; // Limpar a área de exibição
+
+    // Verificando se o campo de upload simples contém uma imagem
+    if (uploadSingle.files.length > 0) {
+      const imagem = uploadSingle.files[0];
+      exibirImagem(imagem);
+    }
+
+    // Verificando se o campo de upload múltiplo contém imagens
+    if (uploadMultiple.files.length > 0) {
+      // Convertendo a lista de FileList em um array
+      const imagens = Array.from(uploadMultiple.files);
+      imagens.forEach(exibirImagem);
+    }
+  }
+
+  function exibirImagem(imagem) {
+    const leitor = new FileReader();
+    leitor.readAsDataURL(imagem);
+    leitor.onload = () => {
+      const elementoImagem = document.createElement('img');
+      elementoImagem.src = leitor.result;
+      showSingle.appendChild(elementoImagem);
+    };
+  }
+
+  function exibirImagem2(imagem) {
+    const leitor = new FileReader();
+    leitor.readAsDataURL(imagem);
+    leitor.onload = () => {
+      const elementoImagem = document.createElement('img');
+      elementoImagem.src = leitor.result;
+      showMultiple.appendChild(elementoImagem);
+    };
+  }
+
+</script>

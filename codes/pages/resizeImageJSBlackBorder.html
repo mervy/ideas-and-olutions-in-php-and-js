@@ -1,0 +1,35 @@
+
+  <p>
+  Neste exemplo, primeiro definimos a largura e a altura alvo para a nova imagem, que são 1920 x 1080. Em seguida, calculamos a proporção entre a largura original e a largura alvo, e entre a altura original e a altura alvo. Em seguida, escolhemos a menor proporção para garantir que a imagem original caiba na resolução alvo sem perder proporções.
+  </p><p>
+Em seguida, multiplicamos as dimensões originais pela proporção escolhida para obter a largura e altura da nova imagem. Definimos a largura e altura do elemento canvas para a resolução alvo desejada. Em seguida, desenhamos uma barra preta no elemento canvas para preencher a área que não será coberta pela imagem original.
+  </p><p>
+Finalmente, desenhamos a imagem original no centro da área do elemento canvas usando o método drawImage(), com o argumento sx e sy para definir a posição na imagem original, e sWidth e sHeight para definir a largura e altura da área que será desenhada na nova imagem.
+  </p><p>
+Observe que a imagem original será escalada para caber na resolução alvo, mantendo a proporção original. As barras pretas serão adicionadas no lado direito e esquerdo ou na parte superior e inferior da imagem, conforme necessário, para preencher a resolução alvo.
+</p>
+<p>style usado:
+  <code>
+    #canvas {
+      margin: auto;
+      max-height: 100vh;
+        max-width: 100%;
+        object-fit: contain;
+    }
+  </code>
+</p>
+<p>
+  Código html usado:
+<code>
+  <h1>Imagem original</h1>
+  <img src="resizeImageJS.jpg" alt="Imagem original">
+
+  <h1>Imagem redimensionada</h1>
+  
+  <div style="max-width:90%">
+	<canvas id="canvas"></canvas>
+  </div>
+</code>
+</p>
+
+<script src="https://gist.github.com/mervy/a52561fd09b951f46f5400c95af2dbb2.js"></script>
